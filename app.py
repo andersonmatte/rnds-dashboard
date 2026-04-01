@@ -12,7 +12,7 @@ app = Dash(__name__)
 
 app.layout = html.Div([
 
-    html.H1("Dashboard RNDS"),
+    html.H1("Total de registros na Rede Nacional de Dados em Saúde (RNDS)"),
 
     dcc.Tabs([
 
