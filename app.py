@@ -1,10 +1,9 @@
 from dash import Dash, html, dcc
 
-from services.data_loader import carregar_dados
-
-from layouts.aba_uf import layout_aba_uf
-from layouts.aba_regiao import layout_aba_regiao
 from layouts.aba_brasil import layout_aba_brasil
+from layouts.aba_regiao import layout_aba_regiao
+from layouts.aba_uf import layout_aba_uf
+from services.data_loader import carregar_dados
 
 # Carrega dados uma vez
 df = carregar_dados()

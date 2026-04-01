@@ -1,6 +1,7 @@
 import plotly.express as px
 
 
+## Componente do Gráfico de Região
 def criar_grafico_regiao(df):
     df_regiao = (
         df

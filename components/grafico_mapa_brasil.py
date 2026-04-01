@@ -1,58 +1,46 @@
 import json
+
 import plotly.express as px
 
 
+## Componente do Mapa do Brasil
 def criar_mapa_brasil(df):
-
-    # Carrega o mapa do Brasil
     with open(
-        "data/brasil_estados.geojson",
-        encoding="utf-8"
+            "data/brasil_estados.geojson",
+            encoding="utf-8"
     ) as f:
-
         geojson = json.load(f)
 
     fig = px.choropleth(
-
         df,
-
         geojson=geojson,
-
         locations="sg_uf",
-
         featureidkey="properties.sigla",
-
-        color="vl_indicador_calculado_uf",
-
+        color="no_regiao_brasil",
         hover_name="no_uf",
-
         hover_data={
-            "sg_uf": True,
+            "no_regiao_brasil": True,
             "vl_indicador_calculado_uf": ":,.0f"
         },
+        color_discrete_map={
 
-        color_continuous_scale="Blues",
-
-        title="Total de registros enviados para a RNDS por UF"
+            "Norte": "#1f77b4",
+            "Nordeste": "#ff7f0e",
+            "Centro-Oeste": "#2ca02c",
+            "Sudeste": "#d62728",
+            "Sul": "#9467bd"
+        },
+        title="Distribuição de registros enviados para a RNDS por Região",
+        labels={
+            "no_regiao_brasil": "Região",
+            "sg_uf": "UF",
+            "vl_indicador_calculado_uf": "Total de Registros"
+        },
     )
 
     fig.update_geos(
-
         fitbounds="locations",
-
         visible=False
-
-    )
-
-    fig.update_layout(
-
-        margin=dict(
-            l=0,
-            r=0,
-            t=50,
-            b=0
-        )
-
     )
 
     return fig

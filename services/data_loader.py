@@ -1,5 +1,7 @@
 import json
+
 import pandas as pd
+
 
 ## Função para formatar o ano-mes
 def formatar_anomes(valor):
@@ -10,9 +12,9 @@ def formatar_anomes(valor):
 
     return f"{mes}/{ano}"
 
+
 ## Carrega os dados
 def carregar_dados():
-
     with open("data/rnds.json", encoding="utf-8") as f:
         dados = json.load(f)
 

@@ -4,13 +4,13 @@ Este projeto cria um dashboard interativo utilizando Dash para visualização de
 
 ## Descrição
 
-O dashboard consome dados em formato JSON da RNDS e apresenta visualizações interativas através de gráficos e tabelas, facilitando a análise e compreensão dos dados de saúde.
+O dashboard consome dados em formato JSON da RNDS e apresenta visualizações interativas através de gráficos e mapas, facilitando a análise e compreensão dos dados de saúde em diferentes níveis geográficos e temporais.
 
 ## Tecnologias Utilizadas
 
 - **Dash**: Framework Python para criação de aplicações web analíticas
 - **Pandas**: Biblioteca para manipulação e análise de dados
-- **Plotly**: Biblioteca para criação de gráficos interativos
+- **Plotly**: Biblioteca para criação de gráficos interativos e mapas
 
 ## Instalação
 
@@ -23,34 +23,45 @@ Pré-requisitos:
 Execute os seguintes comandos para instalar as bibliotecas necessárias:
 
 ```bash
-pip install dash
-pip install pandas
-pip install plotly
+pip install dash pandas plotly
 ```
 
-Ou instale todas as dependências de uma vez:
+Ou utilize o arquivo requirements:
 
 ```bash
-pip install dash pandas plotly
+pip install -r requirements.txt
 ```
 
 ## Estrutura do Projeto
 
 ```
 rnds-dashboard/
-├── README.md              # Este arquivo
-├── app.py                 # Aplicação principal do dashboard
-├── data/                  # Diretório para arquivos JSON da RNDS
-│   └── sample_data.json   # Exemplo de dados
-├── assets/                # Arquivos estáticos (CSS, imagens)
-└── requirements.txt       # Lista de dependências
+├── README.md                    # Este arquivo
+├── app.py                       # Aplicação principal do dashboard
+├── requirements.txt             # Lista de dependências
+├── components/                 # Componentes de visualização
+│   ├── grafico_bar_uf.py      # Gráfico de barras por UF
+│   ├── grafico_pie_uf.py      # Gráfico de pizza por UF
+│   ├── grafico_regiao.py      # Gráfico por região
+│   └── grafico_mapa_brasil.py # Mapa interativo do Brasil
+├── layouts/                    # Layouts das abas do dashboard
+│   ├── aba_uf.py              # Layout da aba por UF
+│   ├── aba_regiao.py          # Layout da aba por região
+│   └── aba_brasil.py          # Layout da aba do Brasil
+├── services/                   # Serviços de dados
+│   └── data_loader.py         # Carregamento e processamento de dados
+└── data/                      # Diretório para arquivos de dados
+    ├── rnds.json             # Dados da RNDS
+    └── brasil_estados.geojson # Dados geográficos do Brasil
 ```
 
 ## Como Executar
 
 1. Clone ou baixe este repositório
 2. Instale as dependências conforme descrito acima
-3. Coloque seu arquivo JSON da RNDS no diretório `data/`
+3. Certifique-se de que os arquivos de dados estão no diretório `data/`:
+   - `rnds.json` (dados da RNDS)
+   - `brasil_estados.geojson` (dados geográficos)
 4. Execute a aplicação:
 
 ```bash
@@ -61,15 +72,70 @@ python app.py
 
 ## Funcionalidades
 
-- Carregamento de dados JSON da RNDS
-- Visualizações interativas com gráficos dinâmicos
-- Filtros e seleções para análise exploratória
-- Interface responsiva e intuitiva
-- Atualização em tempo real dos dados
+### Abas do Dashboard
+
+- **Por UF**: 
+  - Gráfico de barras mostrando o total de registros por Unidade Federativa
+  - Gráfico de pizza com a distribuição percentual por UF
+
+- **Por Região**:
+  - Gráfico de barras colorido agrupado por regiões do Brasil
+  - Visualização consolidada por Norte, Nordeste, Centro-Oeste, Sudeste e Sul
+
+- **Brasil**:
+  - Mapa interativo do Brasil com visualização por regiões
+  - Cores diferenciadas para cada região
+  - Informações detalhadas em hover
+
+### Características Técnicas
+
+- **Carregamento de dados**: Processamento automático de JSON da RNDS
+- **Transformação de dados**: Formatação de datas e conversão de tipos
+- **Visualizações interativas**: Gráficos dinâmicos com Plotly
+- **Mapas geográficos**: Visualização espacial dos dados
+- **Interface responsiva**: Layout adaptável a diferentes telas
+- **Organização modular**: Código estruturado em componentes reutilizáveis
+
+## Formato dos Dados
+
+O dashboard espera um arquivo JSON (`data/rnds.json`) com a seguinte estrutura:
+
+```json
+[
+  {
+    "co_anomes": "202401",
+    "sg_uf": "SP",
+    "no_uf": "São Paulo",
+    "no_regiao_brasil": "Sudeste",
+    "vl_indicador_calculado_uf": 1000000,
+    "vl_indicador_calculado_reg": 5000000,
+    "vl_indicador_calculado_br": 10000000,
+    "dt_atualizacao": "2024-01-15T10:30:00"
+  }
+]
+```
+
+## Desenvolvimento
+
+### Arquitetura
+
+- **app.py**: Ponto de entrada da aplicação Dash
+- **components/**: Componentes reutilizáveis de visualização
+- **layouts/**: Estrutura das diferentes abas do dashboard
+- **services/**: Lógica de negócio e processamento de dados
+
+### Personalização
+
+- Cores dos gráficos podem ser ajustadas nos arquivos de componentes
+- Novas visualizações podem ser adicionadas criando novos componentes
+- Layouts podem ser modificados para incluir diferentes elementos
 
 ## Contribuição
 
-Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar pull requests.
+Contribuições são bem-vindas! Sinta-se à vontade para:
+- Reportar issues e bugs
+- Sugerir melhorias e novas funcionalidades
+- Enviar pull requests com código
 
 ## Licença
 
