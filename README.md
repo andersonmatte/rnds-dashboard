@@ -1,10 +1,12 @@
 # Dashboard RNDS - Rede Nacional de Dados em Saúde
 
-Este projeto cria um dashboard interativo utilizando Dash para visualização de dados da Rede Nacional de Dados em Saúde (RNDS).
+Este projeto cria um dashboard interativo utilizando Dash para visualização de dados da Rede Nacional de Dados em
+Saúde (RNDS).
 
 ## Descrição
 
-O dashboard consome dados em formato JSON da RNDS e apresenta visualizações interativas através de gráficos e mapas, facilitando a análise e compreensão dos dados de saúde em diferentes níveis geográficos e temporais.
+O dashboard consome dados em formato JSON da RNDS e apresenta visualizações interativas através de gráficos e mapas,
+facilitando a análise e compreensão dos dados de saúde em diferentes níveis geográficos e temporais.
 
 ## Tecnologias Utilizadas
 
@@ -15,6 +17,7 @@ O dashboard consome dados em formato JSON da RNDS e apresenta visualizações in
 ## Instalação
 
 Pré-requisitos:
+
 - Python 3.7 ou superior
 - pip (gerenciador de pacotes Python)
 
@@ -39,20 +42,20 @@ rnds-dashboard/
 ├── README.md                    # Este arquivo
 ├── app.py                       # Aplicação principal do dashboard
 ├── requirements.txt             # Lista de dependências
-├── components/                 # Componentes de visualização
-│   ├── grafico_bar_uf.py      # Gráfico de barras por UF
-│   ├── grafico_pie_uf.py      # Gráfico de pizza por UF
-│   ├── grafico_regiao.py      # Gráfico por região
-│   └── grafico_mapa_brasil.py # Mapa interativo do Brasil
-├── layouts/                    # Layouts das abas do dashboard
-│   ├── aba_uf.py              # Layout da aba por UF
-│   ├── aba_regiao.py          # Layout da aba por região
-│   └── aba_brasil.py          # Layout da aba do Brasil
-├── services/                   # Serviços de dados
-│   └── data_loader.py         # Carregamento e processamento de dados
-└── data/                      # Diretório para arquivos de dados
-    ├── rnds.json             # Dados da RNDS
-    └── brasil_estados.geojson # Dados geográficos do Brasil
+├── components/                  # Componentes de visualização
+│   ├── grafico_bar_uf.py        # Gráfico de barras por UF
+│   ├── grafico_pie_uf.py        # Gráfico de pizza por UF
+│   ├── grafico_regiao.py        # Gráfico por região
+│   └── grafico_mapa_brasil.py   # Mapa interativo do Brasil
+├── layouts/                     # Layouts das abas do dashboard
+│   ├── aba_uf.py                # Layout da aba por UF
+│   ├── aba_regiao.py            # Layout da aba por região
+│   └── aba_brasil.py            # Layout da aba do Brasil
+├── services/                    # Serviços de dados
+│   └── data_loader.py           # Carregamento e processamento de dados
+└── data/                        # Diretório para arquivos de dados
+    ├── rnds.json                # Dados da RNDS
+    └── brasil_estados.geojson   # Dados geográficos do Brasil
 ```
 
 ## Como Executar
@@ -60,8 +63,8 @@ rnds-dashboard/
 1. Clone ou baixe este repositório
 2. Instale as dependências conforme descrito acima
 3. Certifique-se de que os arquivos de dados estão no diretório `data/`:
-   - `rnds.json` (dados da RNDS)
-   - `brasil_estados.geojson` (dados geográficos)
+    - `rnds.json` (dados da RNDS)
+    - `brasil_estados.geojson` (dados geográficos)
 4. Execute a aplicação:
 
 ```bash
@@ -74,18 +77,18 @@ python app.py
 
 ### Abas do Dashboard
 
-- **Por UF**: 
-  - Gráfico de barras mostrando o total de registros por Unidade Federativa
-  - Gráfico de pizza com a distribuição percentual por UF
+- **Por UF**:
+    - Gráfico de barras mostrando o total de registros por Unidade Federativa
+    - Gráfico de pizza com a distribuição percentual por UF
 
 - **Por Região**:
-  - Gráfico de barras colorido agrupado por regiões do Brasil
-  - Visualização consolidada por Norte, Nordeste, Centro-Oeste, Sudeste e Sul
+    - Gráfico de barras colorido agrupado por regiões do Brasil
+    - Visualização consolidada por Norte, Nordeste, Centro-Oeste, Sudeste e Sul
 
 - **Brasil**:
-  - Mapa interativo do Brasil com visualização por regiões
-  - Cores diferenciadas para cada região
-  - Informações detalhadas em hover
+    - Mapa interativo do Brasil com visualização por regiões
+    - Cores diferenciadas para cada região
+    - Informações detalhadas em hover
 
 ### Características Técnicas
 
@@ -133,6 +136,7 @@ O dashboard espera um arquivo JSON (`data/rnds.json`) com a seguinte estrutura:
 ## Contribuição
 
 Contribuições são bem-vindas! Sinta-se à vontade para:
+
 - Reportar issues e bugs
 - Sugerir melhorias e novas funcionalidades
 - Enviar pull requests com código
