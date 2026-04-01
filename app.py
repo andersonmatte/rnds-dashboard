@@ -1,44 +1,32 @@
-import json
-import pandas as pd
 from dash import Dash, html, dcc
+
 from services.data_loader import carregar_dados
-import plotly.express as px
 
-# Carrega os dados
-dados = carregar_dados()
+from components.grafico_bar_uf import criar_grafico_bar_uf
+from components.grafico_pie_uf import criar_grafico_pie_uf
 
-# Converter para DataFrame
-df = pd.DataFrame(dados)
+# Carrega dados
+df = carregar_dados()
 
-# Criar gráfico bar
-figBar = px.bar(
-    df,
-    x="sg_uf",
-    y="vl_indicador_calculado_uf",
-    title="Total de registros enviados para a RNDS por UF"
-)
+# Cria gráficos
+figBar = criar_grafico_bar_uf(df)
+figPie = criar_grafico_pie_uf(df)
 
-# Criar gráfico pie
-figPie = px.pie(
-    df,
-    names="sg_uf",
-    values="vl_indicador_calculado_uf",
-    title="Total de registros enviados para a RNDS por UF"
-)
-
-
-# Criar aplicação Dash
+# App
 app = Dash(__name__)
 
 app.layout = html.Div([
+
     html.H1("Dashboard RNDS"),
 
     dcc.Graph(
-        figure=figBar,
+        figure=figBar
     ),
+
     dcc.Graph(
-        figure=figPie,
+        figure=figPie
     )
+
 ])
 
 if __name__ == "__main__":
